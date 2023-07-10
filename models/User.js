@@ -24,7 +24,7 @@ User.init(
     email: { type: S.STRING, require: true, validate: { isEmail: true } },
     password: { type: S.STRING, require: true },
     is_admin: { type: S.BOOLEAN, defaultValue: false },
-    is_deleted: { type: Sequelize.BOOLEAN, defaultValue: false },
+    is_deleted: { type: S.BOOLEAN, defaultValue: false },
     salt: { type: S.STRING },
   },
   {

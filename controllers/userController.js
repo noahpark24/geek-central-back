@@ -6,7 +6,7 @@ const {
   getAllUsers,
   deleteUserAccount,
 } = require("../services/userServices");
-const { getUserShoppingCart } = require("../services/shoppingCartServices");
+const { getUserShoppingCart } = require("../services/CartServices");
 const { generateToken } = require("../config/token");
 
 exports.signup_user = asyncHandler(async (req, res, next) => {
