@@ -2,7 +2,11 @@ const express = require("express");
 const {
   delete_product,
   edit_product,
+  add_new_product,
 } = require("../controllers/productController");
+
+const { get_all_orders } = require("../controllers/orderController");
+
 const {
   see_all_users,
   update_user_data,
@@ -10,7 +14,11 @@ const {
 } = require("../controllers/userController");
 const router = express.Router();
 
-router.delete("/delete-product", delete_product);
+router.get("/orders", get_all_orders);
+
+router.post("/create-product", add_new_product);
+
+router.delete("/delete-product/:id", delete_product);
 
 router.put("/edit-product", edit_product);
 

@@ -5,7 +5,7 @@ const { searchUser } = require("../services/userServices");
 const {
   delete_cart,
   getUserShoppingCart,
-} = require("../services/shoppingCartServices");
+} = require("../services/CartServices");
 
 exports.get_all_orders = asyncHandler(async (req, res) => {
   try {
@@ -28,16 +28,15 @@ exports.get_all_user_orders = asyncHandler(async (req, res) => {
 
 exports.add_new_order = asyncHandler(async (req, res) => {
   try {
-    const { total, shoppingCartId, nickname } = req.body;
-    const { id, email } = await searchUser(nickname);
+    const { total, CartId, nickname } = req.body;
+    const { id } = await searchUser(nickname);
     const cart = await getUserShoppingCart(id);
+
     const newOrder = await addNewOrder({
       total: total,
-      shoppingCartId: shoppingCartId,
       userId: id,
+      CartId: CartId,
     });
-    // console.log("estoy enviando mail a ", email);
-    // await sendEmailToUser(email);
     cart.purchased = true;
     cart.save();
     res.status(201).send(newOrder);

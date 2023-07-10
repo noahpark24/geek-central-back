@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const { getAllCarts } = require("../services/shoppingCartServices");
+const { getAllCarts } = require("../services/CartServices");
 
 exports.get_all_carts = asyncHandler(async (req, res) => {
   try {

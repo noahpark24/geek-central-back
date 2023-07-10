@@ -1,23 +1,10 @@
-const {
-  Order,
-  User,
-  ShoppingCart,
-  CartProduct,
-  Product,
-} = require("../models");
-const { getAllCarts } = require("../services/shoppingCartServices");
+const { User, Cart, CartProduct, Product } = require("../models");
+const { getAllCarts } = require("./CartServices");
 const nodemailer = require("nodemailer");
 
 exports.getAllOrders = async () => {
   try {
-    // const orders = await Order.findAll({
-    //   include: [
-    //     { model: User, as: "user" },
-    //     { model: ShoppingCart, as: "shopping_cart" },
-    //   ],
-    // });
-
-    let shoppingCarts = await ShoppingCart.findAll({
+    let Carts = await Cart.findAll({
       where: { purchased: true },
       include: [
         { model: User, as: "user" },
@@ -28,13 +15,7 @@ exports.getAllOrders = async () => {
         },
       ],
     });
-    console.log(
-      "shopping carts que queremos ver",
-      shoppingCarts[0].dataValues.cart_product
-    );
-    console.log("Holaaaaaaaaaaaaaaaaaaaaaaaa");
-    console.log("shopping carts", shoppingCarts);
-    return shoppingCarts;
+    return Carts;
   } catch (error) {
     throw Error(error);
   }
@@ -42,8 +23,8 @@ exports.getAllOrders = async () => {
 
 exports.getAllUserOrders = async (id) => {
   try {
-    const orders = await Order.findAll({
-      where: { userId: id },
+    const orders = await Cart.findAll({
+      where: { purchased: true, userId: id },
       include: { model: User, as: "user" },
     });
     return orders;
@@ -54,7 +35,7 @@ exports.getAllUserOrders = async (id) => {
 
 exports.addNewOrder = async (createdOrder) => {
   try {
-    const newOrder = await Order.create(createdOrder);
+    const newOrder = await Cart.create(createdOrder);
     return newOrder;
   } catch (error) {
     throw Error(error);
