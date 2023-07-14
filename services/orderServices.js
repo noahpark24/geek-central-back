@@ -1,10 +1,4 @@
-const {
-  Order,
-  User,
-  ShoppingCart,
-  CartProduct,
-  Product,
-} = require("../models");
+const { Order, User, Cart, CartProduct, Product } = require("../models");
 const { getAllCarts } = require("../services/cartServices");
 const nodemailer = require("nodemailer");
 
@@ -13,11 +7,11 @@ exports.getAllOrders = async () => {
     // const orders = await Order.findAll({
     //   include: [
     //     { model: User, as: "user" },
-    //     { model: ShoppingCart, as: "shopping_cart" },
+    //     { model: Cart, as: "shopping_cart" },
     //   ],
     // });
 
-    let shoppingCarts = await ShoppingCart.findAll({
+    let shoppingCarts = await Cart.findAll({
       where: { purchased: true },
       include: [
         { model: User, as: "user" },
@@ -28,12 +22,6 @@ exports.getAllOrders = async () => {
         },
       ],
     });
-    console.log(
-      "shopping carts que queremos ver",
-      shoppingCarts[0].dataValues.cart_product
-    );
-    console.log("Holaaaaaaaaaaaaaaaaaaaaaaaa");
-    console.log("shopping carts", shoppingCarts);
     return shoppingCarts;
   } catch (error) {
     throw Error(error);
