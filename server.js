@@ -18,6 +18,6 @@ app.use(express.json());
 app.use("/api", router);
 
 //config
-db.sync({ force: true }).then(() =>
+db.sync({ force: false }).then(() =>
   app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
 );
