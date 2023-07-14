@@ -5,7 +5,7 @@ const {
   CartProduct,
   Product,
 } = require("../models");
-const { getAllCarts } = require("../services/shoppingCartServices");
+const { getAllCarts } = require("../services/cartServices");
 const nodemailer = require("nodemailer");
 
 exports.getAllOrders = async () => {

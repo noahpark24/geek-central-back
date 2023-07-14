@@ -4,7 +4,7 @@ const { getProduct } = require("../services/productServices");
 const {
   getUserShoppingCart,
   createShoppingCart,
-} = require("../services/shoppingCartServices");
+} = require("../services/cartServices");
 const {
   add_new_order,
   edit_cart_product,
