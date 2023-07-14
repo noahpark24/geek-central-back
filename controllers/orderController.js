@@ -5,7 +5,7 @@ const { searchUser } = require("../services/userServices");
 const {
   delete_cart,
   getUserShoppingCart,
-} = require("../services/shoppingCartServices");
+} = require("../services/cartServices");
 
 exports.get_all_orders = asyncHandler(async (req, res) => {
   try {

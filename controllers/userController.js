@@ -6,7 +6,7 @@ const {
   getAllUsers,
   deleteUserAccount,
 } = require("../services/userServices");
-const { getUserShoppingCart } = require("../services/shoppingCartServices");
+const { getUserShoppingCart } = require("../services/cartServices");
 const { generateToken } = require("../config/token");
 
 exports.signup_user = asyncHandler(async (req, res, next) => {
@@ -70,17 +70,6 @@ exports.update_user_data = asyncHandler(async (req, res) => {
     let updatedUser = await updateUserData(userChanges, nickname);
 
     res.status(200).send(updatedUser);
-  } catch (error) {
-    throw Error(error);
-  }
-});
-
-exports.get_user_shopping_cart = asyncHandler(async (req, res) => {
-  try {
-    const { nickname } = req.params;
-    const user = await searchUser(nickname);
-    let userShoppingCart = await getUserShoppingCart(user.id);
-    res.status(200).send(userShoppingCart);
   } catch (error) {
     throw Error(error);
   }
