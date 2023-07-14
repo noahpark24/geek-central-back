@@ -19,7 +19,7 @@ User.init(
     nickname: { type: S.STRING, require: true, unique: true },
     lastname: { type: S.STRING, require: true },
     address: { type: S.STRING, require: true },
-    zip_code: { type: S.INTEGER, require: true },
+    zip_code: { type: S.STRING, require: true },
     city: { type: S.STRING, require: true },
     email: { type: S.STRING, require: true, validate: { isEmail: true } },
     password: { type: S.STRING, require: true },
