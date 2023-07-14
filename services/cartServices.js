@@ -46,3 +46,11 @@ exports.deleteCart = async (id) => {
     throw Error(error);
   }
 };
+
+exports.purchaseCart = async (id) => {
+  try {
+    await Cart.update({ where: { id: id } }, { purchased: true });
+  } catch (error) {
+    throw Error(error);
+  }
+};
