@@ -6,7 +6,9 @@ const {
   getAllUsers,
   deleteUserAccount,
 } = require("../services/userServices");
-const { getUserShoppingCart } = require("../services/cartServices");
+
+const { getUserShoppingCart } = require("../services/CartServices");
+
 const { generateToken } = require("../config/token");
 
 exports.signup_user = asyncHandler(async (req, res, next) => {
@@ -87,8 +89,10 @@ exports.see_all_users = asyncHandler(async (req, res) => {
 exports.delete_user_account = asyncHandler(async (req, res) => {
   try {
     const { nickname } = req.params;
+
     await deleteUserAccount(nickname);
-    res.sendStatus(200);
+
+    res.sendStatus(201);
   } catch (error) {
     throw Error(error);
   }

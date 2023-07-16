@@ -49,9 +49,11 @@ exports.add_new_product = asyncHandler(async (req, res) => {
 
 exports.delete_product = asyncHandler(async (req, res) => {
   try {
-    const { id } = req.body;
-    const deletedProduct = await deleteProduct(id);
-    res.status(200).send(deletedProduct);
+    const { id } = req.params;
+
+    await deleteProduct(id);
+
+    res.sendStatus(201);
   } catch (error) {
     throw Error(error);
   }

@@ -10,7 +10,7 @@ const {
 } = require("../controllers/userController");
 const router = express.Router();
 
-router.delete("/delete-product", delete_product);
+router.put("/delete-product/:id", delete_product);
 
 router.put("/edit-product", edit_product);
 
@@ -18,6 +18,6 @@ router.get("/get-users", see_all_users);
 
 router.put("/:nickname", update_user_data);
 
-router.delete("/remove/:nickname", delete_user_account);
+router.put("/remove/:nickname", delete_user_account);
 
 module.exports = router;

@@ -1,8 +1,8 @@
-const S = require("sequelize");
+const Sequelize = require("sequelize");
 const bc = require("bcrypt");
 const db = require("../config/db/index");
 
-class User extends S.Model {
+class User extends Sequelize.Model {
   createHash(password, salt) {
     return bc.hash(password, salt);
   }
@@ -15,18 +15,22 @@ class User extends S.Model {
 
 User.init(
   {
-    name: { type: S.STRING, require: true },
-    nickname: { type: S.STRING, require: true, unique: true },
-    lastname: { type: S.STRING, require: true },
-    address: { type: S.STRING, require: true },
-    image: { type: S.STRING },
-    zip_code: { type: S.INTEGER, require: true },
-    city: { type: S.STRING, require: true },
-    email: { type: S.STRING, require: true, validate: { isEmail: true } },
-    password: { type: S.STRING, require: true },
-    is_admin: { type: S.BOOLEAN, defaultValue: false },
-    is_deleted: { type: S.BOOLEAN, defaultValue: false },
-    salt: { type: S.STRING },
+    name: { type: Sequelize.STRING, required: true },
+    nickname: { type: Sequelize.STRING, required: true, unique: true },
+    lastname: { type: Sequelize.STRING, required: true },
+    address: { type: Sequelize.STRING, required: true },
+    zip_code: { type: Sequelize.STRING, required: true },
+    city: { type: Sequelize.STRING, required: true },
+    email: {
+      type: Sequelize.STRING,
+      required: true,
+      validate: { isEmail: true },
+    },
+    password: { type: Sequelize.STRING, required: true },
+    is_admin: { type: Sequelize.BOOLEAN, defaultValue: false },
+    is_deleted: { type: Sequelize.BOOLEAN, defaultValue: false },
+    salt: { type: Sequelize.STRING },
+
   },
   {
     sequelize: db,
