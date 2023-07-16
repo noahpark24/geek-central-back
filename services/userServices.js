@@ -44,11 +44,12 @@ exports.getAllUsers = async () => {
 
 exports.deleteUserAccount = async (nickname) => {
   try {
-    await Users.destroy({
-      where: { nickname: nickname },
-    });
+    const user = await this.searchUser(nickname);
+
+    user.is_deleted = true;
+
+    await user.save();
   } catch (error) {
     throw Error(error);
   }
 };
-

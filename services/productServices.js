@@ -45,9 +45,11 @@ exports.getProductsByName = async (name) => {
 
 exports.deleteProduct = async (id) => {
   try {
-    await Product.destroy({
-      where: { id: id },
-    });
+    const product = await this.getProduct(id);
+
+    product.is_deleted = true;
+
+    await product.save();
   } catch (error) {
     throw Error(error);
   }

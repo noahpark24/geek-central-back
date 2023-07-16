@@ -1,9 +1,9 @@
-const { Order } = require("../models");
+const { CartProduct } = require("../models");
 
-exports.add_new_order = async (quantity) => {
+exports.add_new_cart_product = async (quantity) => {
   try {
-    const newOrder = await Order.create(quantity);
-    return newOrder;
+    const newCart = await CartProduct.create(quantity);
+    return newCart;
   } catch (error) {
     throw Error(error);
   }

@@ -1,8 +1,8 @@
-const { ShoppingCart, User, CartProduct, Product } = require("../models");
+const { Cart, User, CartProduct, Product } = require("../models");
 
-exports.getUserShoppingCart = async (id) => {
+exports.getUserCart = async (id) => {
   try {
-    let shoppingCart = await ShoppingCart.findOne({
+    let shoppingCart = await Cart.findOne({
       where: { userId: id, purchased: false },
       include: [
         { model: User, as: "user" },
@@ -21,7 +21,7 @@ exports.getUserShoppingCart = async (id) => {
 
 exports.createShoppingCart = async () => {
   try {
-    const newCart = await ShoppingCart.create();
+    const newCart = await Cart.create();
     return newCart;
   } catch (error) {
     throw Error(error);
@@ -30,7 +30,7 @@ exports.createShoppingCart = async () => {
 
 exports.getAllCarts = async () => {
   try {
-    const carts = await ShoppingCart.findAll({
+    const carts = await Cart.findAll({
       include: { model: User, as: "user" },
     });
     return carts;
@@ -41,7 +41,7 @@ exports.getAllCarts = async () => {
 
 exports.delete_cart = async (id) => {
   try {
-    await ShoppingCart.destroy({ where: { id: id } });
+    await Cart.destroy({ where: { id: id } });
   } catch (error) {
     throw Error(error);
   }
