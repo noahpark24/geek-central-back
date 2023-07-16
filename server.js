@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const PORT = process.env.SERVER_PORT;
 const swaggerJSDoc = require("swagger-jsdoc");
+const { seedProducts } = require("./seeders/productSeeder");
 const swaggerUi = require("swagger-ui-express");
 const docsData = require("./docs/swagger");
 const db = require("./config/db/index");
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/api", router);
 
 //config
-db.sync({ force: true }).then(() =>
-  app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
-);
+db.sync({ force: true }).then(async () => {
+  await seedProducts();
+  app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+});
