@@ -1,9 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { validateUser } = require("../middlewares/validateUser");
-
 const {
-  get_user_shopping_cart,
   login_user,
   logout_user,
   signup_user,
@@ -13,8 +11,6 @@ const {
 router.post("/signup", signup_user);
 
 router.post("/login", login_user);
-
-router.get("/shopping-cart/:nickname", get_user_shopping_cart);
 
 router.put("/:nickname", update_user_data);
 

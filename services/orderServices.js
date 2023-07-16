@@ -1,10 +1,13 @@
 const { Order, User, Cart, CartProduct, Product } = require("../models");
 const { getAllCarts } = require("../services/CartServices");
+
 const nodemailer = require("nodemailer");
 
 exports.getAllOrders = async () => {
   try {
+
     let Carts = await Cart.findAll({
+
       where: { purchased: true },
       include: [
         { model: User, as: "user" },
@@ -15,7 +18,9 @@ exports.getAllOrders = async () => {
         },
       ],
     });
+
     return Carts;
+
   } catch (error) {
     throw Error(error);
   }

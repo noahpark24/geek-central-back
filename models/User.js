@@ -30,6 +30,7 @@ User.init(
     is_admin: { type: Sequelize.BOOLEAN, defaultValue: false },
     is_deleted: { type: Sequelize.BOOLEAN, defaultValue: false },
     salt: { type: Sequelize.STRING },
+
   },
   {
     sequelize: db,
