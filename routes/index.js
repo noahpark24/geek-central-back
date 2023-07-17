@@ -2,9 +2,7 @@ const express = require("express");
 const router = express.Router();
 const users = require("./users");
 const products = require("./products");
-
 const Cart = require("./carts");
-
 const cartProduct = require("./cartProducts");
 const orders = require("./orders");
 const admins = require("./admins");

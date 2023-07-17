@@ -6,8 +6,7 @@ const {
 } = require("../services/orderServices");
 const { sendEmailToUser } = require("../services/mailSenderServices");
 const { searchUser } = require("../services/userServices");
-const { delete_cart, getUserCart } = require("../services/CartServices");
-
+const { getUserCart } = require("../services/cartServices");
 
 exports.get_all_orders = asyncHandler(async (req, res) => {
   try {

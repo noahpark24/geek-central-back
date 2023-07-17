@@ -1,8 +1,9 @@
 const { Cart, User, CartProduct, Product } = require("../models");
+const { searchUser } = require("./userServices");
 
 exports.getUserCart = async (id) => {
   try {
-    let cart = await Cart.findOne({
+    let shoppingCart = await Cart.findOne({
       where: { userId: id, purchased: false },
       include: [
         { model: User, as: "user" },
@@ -13,15 +14,16 @@ exports.getUserCart = async (id) => {
         },
       ],
     });
-    return cart;
+    return shoppingCart;
   } catch (error) {
     throw Error(error);
   }
 };
 
-exports.createCart = async () => {
+exports.createShoppingCart = async (user) => {
   try {
     const newCart = await Cart.create();
+    newCart.setUser(user);
     return newCart;
   } catch (error) {
     throw Error(error);
@@ -39,7 +41,7 @@ exports.getAllCarts = async () => {
   }
 };
 
-exports.deleteCart = async (id) => {
+exports.delete_cart = async (id) => {
   try {
     await Cart.destroy({ where: { id: id } });
   } catch (error) {

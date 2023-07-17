@@ -1,5 +1,14 @@
 const { CartProduct } = require("../models");
 
+exports.add_new_product = async (quantity) => {
+  try {
+    const newProduct = await CartProduct.create(quantity);
+    return newProduct;
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
 exports.add_new_cart_product = async (quantity) => {
   try {
     const newCart = await CartProduct.create(quantity);
