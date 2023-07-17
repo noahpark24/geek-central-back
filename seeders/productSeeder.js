@@ -1,15 +1,10 @@
-const Product = require("../models/Product.js");
-const db = require("../config/db/index.js");
 const { productData } = require("./products.js");
+const { addSeederProducts } = require("../services/productServices.js");
 
 exports.seedProducts = async () => {
   try {
-    await Product.bulkCreate(productData);
-
-    console.log("Seeding complete!");
+    await addSeederProducts(productData);
   } catch (error) {
     console.error("Seeding error:", error);
-  } finally {
-    await db.close();
   }
 };

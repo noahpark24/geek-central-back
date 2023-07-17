@@ -19,6 +19,22 @@ exports.getProduct = async (idProduct) => {
   }
 };
 
+exports.addSeederProducts = async (productData) => {
+  try {
+    const existingProducts = await Product.findAll();
+    if (existingProducts.length === 0) {
+      await Product.bulkCreate(productData);
+      console.log("Seeding complete!");
+      return;
+    } else {
+      console.log("Products already exist in the database.");
+      return;
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 exports.getAllProducts = async () => {
   try {
     let productsOnStock = await Product.findAll();
