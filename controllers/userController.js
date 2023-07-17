@@ -7,7 +7,7 @@ const {
   deleteUserAccount,
 } = require("../services/userServices");
 
-const { getUserShoppingCart } = require("../services/CartServices");
+const { getUserCart, createShoppingCart } = require("../services/cartServices");
 
 const { generateToken } = require("../config/token");
 
@@ -22,6 +22,8 @@ exports.signup_user = asyncHandler(async (req, res, next) => {
     } else {
       let user_data = req.body;
       let newUser = await createUser(user_data);
+      await createShoppingCart(newUser);
+
       res.status(200).send(newUser);
     }
   } catch (error) {

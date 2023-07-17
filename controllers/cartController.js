@@ -5,9 +5,6 @@ const {
   getUserCart,
   purchaseCart,
 } = require("../services/cartServices");
-const {
-  purchaseCart,
-} = require("../../geek-central-front/src/services/cart/purchaseCart");
 
 exports.get_all_carts = asyncHandler(async (req, res) => {
   try {

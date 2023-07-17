@@ -1,13 +1,10 @@
 const asyncHandler = require("express-async-handler");
 const { searchUser } = require("../services/userServices");
 const { getProduct } = require("../services/productServices");
-const {
-  getUserShoppingCart,
-  createShoppingCart,
-} = require("../services/CartServices");
+const { getUserCart, createShoppingCart } = require("../services/cartServices");
 
 const {
-  add_new_order,
+  add_new_product,
   edit_cart_product,
   delete_cart_product,
 } = require("../services/cartProductServices");
@@ -15,19 +12,20 @@ const {
 exports.add_new_cart_product = asyncHandler(async (req, res) => {
   try {
     const { nickname, id, quantity } = req.body;
-    const newCartProduct = await add_new_order(quantity);
+
+    const addedProduct = await add_new_product(quantity);
 
     const foundUser = await searchUser(nickname);
-    let userShoppingCart = await getUserShoppingCart(foundUser.id);
-    if (!userShoppingCart) {
-      userShoppingCart = await createShoppingCart();
-    }
-    const foundProduct = await getProduct(id);
-    userShoppingCart.setUser(foundUser);
-    newCartProduct.setProduct(foundProduct);
-    newCartProduct.setShopping_cart(userShoppingCart);
 
-    res.status(201).send(newCartProduct);
+    const userShoppingCart = await getUserCart(foundUser.id);
+
+    const foundProduct = await getProduct(id);
+
+    addedProduct.setProduct(foundProduct);
+
+    addedProduct.setCart(userShoppingCart);
+
+    res.status(201).send(addedProduct);
   } catch (error) {
     throw Error(error);
   }
