@@ -38,7 +38,7 @@ exports.productData = [
     description: "Llavero de personaje de una serie de anime",
     rating: 4.3,
     image:
-      "https://d3ugyf2ht6aenh.cloudfront.net/stores/806/999/products/de2a64201-79938d191d4178172f16686194799739-640-0.webp",
+      "https://d3ugyf2ht6aenh.cloudfront.net/stores/940/762/products/whatsapp-image-2021-07-01-at-2-40-11-pm1-008bb813e4c89b780116251685290736-640-0.jpeg",
     total_sales: 70,
     category: ["Coleccionables", "Anime"],
     is_deleted: false,
